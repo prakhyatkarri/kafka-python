@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+    kafka:
+        image: landoop/fast-data-dev:2.5.1
+        restart: always
+        environment:
+          # - ADV_HOST=192.168.99.100
+          ADV_HOST: localhost
+          KAFKA_LISTENERS: EXTERNAL_SAME_HOST://:29092,INTERNAL://:9092
+          KAFKA_ADVERTISED_LISTENERS: INTERNAL://localhost:9092,EXTERNAL_SAME_HOST://localhost:29092
+          KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL_SAME_HOST:PLAINTEXT
+          KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+        ports:
+          - 2181:2181
+          - 3030:3030
+          - 3031:3031
+          - 8081:8081
+          - 8082:8082
+          - 9092:9092
